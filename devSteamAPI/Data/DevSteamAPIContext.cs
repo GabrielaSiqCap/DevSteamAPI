@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using devSteamAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace devSteamAPI.Data
@@ -10,10 +11,16 @@ namespace devSteamAPI.Data
         {
         }
 
+        //Definir as tabelas do banco de dados// como o modelo vai ser referênciado no sistema
+        public DbSet<Jogo> Jogos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+
         //Sobrescrever o método OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Jogo>().ToTable("Jogos");
+            modelBuilder.Entity<Categoria>().ToTable("Categorias");
         }
     }
 }
