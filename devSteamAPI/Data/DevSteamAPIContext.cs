@@ -1,6 +1,7 @@
 ﻿using devSteamAPI.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using devSteamAPI.Migrations;
 
 namespace devSteamAPI.Data
 {
@@ -22,5 +23,7 @@ namespace devSteamAPI.Data
             modelBuilder.Entity<Jogo>().ToTable("Jogos");
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
         }
+        public DbSet<devSteamAPI.Models.Carrinho> Carrinho { get; set; } = default!;
+        public DbSet<devSteamAPI.Migrations.ItemCarrinho> ItemCarrinho { get; set; } = default!;
     }
 }

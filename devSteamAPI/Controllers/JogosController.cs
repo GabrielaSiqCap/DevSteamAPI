@@ -44,6 +44,22 @@ namespace devSteamAPI.Controllers
             return jogo;
         }
 
+        // GET: api/Jogos/ByName
+        [HttpGet("ByName")]
+        public async Task<ActionResult<IEnumerable<Jogo>>> GetJogosByName(string nome)
+        {
+            var jogos = await _context.Jogos
+                .Where(j => j.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+
+            if (jogos == null || !jogos.Any())
+            {
+                return NotFound();
+            }
+
+            return jogos;
+        }
+
         // PUT: api/Jogos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
